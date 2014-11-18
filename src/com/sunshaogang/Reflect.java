@@ -27,6 +27,7 @@ public class Reflect {
         threeTest();
         fourTest();
         fiveTest();
+        sixTest();
     }
 
 
@@ -142,7 +143,6 @@ public class Reflect {
 
     /**
      * 修改属性的值
-     *
      */
     private static void fiveTest() {
         try {
@@ -178,6 +178,52 @@ public class Reflect {
         }
 
     }
+
+    /**
+     * 执行带多个参数的方法
+     */
+    private static void sixTest() {
+        try {
+            Class cls = Class.forName("com.sunshaogang.Reflect");
+            Class[] types = new Class[2];
+            types[0] = Integer.TYPE;
+            types[1] = Integer.TYPE;
+            //查找add方法
+            Method method = cls.getMethod("add", types);
+            //创建对象实例
+            Object obj = cls.newInstance();
+            //然后调用它的方法
+            //先参数值j=method
+            Object arglist[] = new Object[2];
+            arglist[0] = new Integer(37);
+            arglist[1] = new Integer(40);
+            Object retob = method.invoke(obj, arglist);
+            Integer retval = (Integer) retob;
+            System.out.println(retval);
+        } catch (SecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
         /****************************************************************************************************/
     private static void sayHello(){
         System.out.println("Hello, World!!");
@@ -195,6 +241,10 @@ public class Reflect {
     }
     private static void shows(){
 
+    }
+
+    public int add(int a, int b) {
+        return a + b;
     }
 
     @Override
