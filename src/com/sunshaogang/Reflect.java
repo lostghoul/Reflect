@@ -28,6 +28,7 @@ public class Reflect {
         fourTest();
         fiveTest();
         sixTest();
+        sevenTest();
     }
 
 
@@ -224,7 +225,35 @@ public class Reflect {
         }
 
     }
-        /****************************************************************************************************/
+
+    /**
+     * 操作数组
+     */
+    private static void sevenTest() {
+        try {
+            Class cls = Class.forName("java.lang.String");
+            Object arr = Array.newInstance(cls, 10);   //新建一个长度为10的数组实例
+            Array.set(arr, 5, "hello world");   //在数组的第6个位置设置值
+            //取出数组中第6个位置的值
+            String s = (String) Array.get(arr, 5);
+            show("第6个位置的值为:" + s);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NegativeArraySizeException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+
+    /****************************************************************************************************/
     private static void sayHello(){
         System.out.println("Hello, World!!");
     }
