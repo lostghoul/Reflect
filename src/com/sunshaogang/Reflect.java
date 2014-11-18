@@ -1,9 +1,6 @@
 package com.sunshaogang;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 
 public class Reflect {
 
@@ -24,11 +21,12 @@ public class Reflect {
     }
     public static void main(String[] args) {
 	// write your code here
-//        basicTest();
-//        oneTest();
-//        twoTest();
-//        threeTest();
+        basicTest();
+        oneTest();
+        twoTest();
+        threeTest();
         fourTest();
+        fiveTest();
     }
 
 
@@ -140,6 +138,45 @@ public class Reflect {
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 修改属性的值
+     *
+     */
+    private static void fiveTest() {
+        try {
+            Class cls = Class.forName("com.sunshaogang.Reflect");
+            //取属性对象
+            Field fld = cls.getDeclaredField("a");
+            //新建一个实例
+            Object obj = cls.newInstance();
+            //未设置值之前
+            show("a = " + ((Reflect) obj).a);
+            //调用实例的set方法设置属性值
+            fld.setInt(obj, 99);
+            //设置之后的值
+            show("a = " + ((Reflect) obj).a);
+        } catch (SecurityException e) {
+        // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+        // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+        // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+        // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+        // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+        // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
         /****************************************************************************************************/
     private static void sayHello(){
